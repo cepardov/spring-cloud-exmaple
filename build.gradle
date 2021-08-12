@@ -39,4 +39,7 @@ dependencies {
     testCompile 'org.codehaus.groovy:groovy-all:2.4.4'
     testRuntime 'cglib:cglib-nodep:3.3.0'       // For mocking classes
     testCompile 'org.objenesis:objenesis:3.2'   // For mocking final classes
+
+    implementation 'org.hibernate:hibernate-validator:7.0.1.Final'
+
 }
