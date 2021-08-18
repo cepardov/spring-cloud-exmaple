@@ -2,3 +2,16 @@ endpoints:
   ApiTheMovieDb:
     token: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiODE5NDM4NzJhZDhkNWRlMzgwODlmMjYwMWQ4MWI3ZCIsInN1YiI6IjYxMGNiOTU3ZTc4Njg3MDA1ZTkyZjYzZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gdu9M6yingzaVUKEwKnBST8YDxswRDAmJDB1NZ36xSc'
     searchMovie: 'https://api.themoviedb.org/3/search/movie'
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:catalogo
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
+  h2:
+    console:
+      enabled: true
