@@ -1,10 +1,10 @@
 package com.globallogic.catalogo.service;
 
-import com.globallogic.catalogo.dto.TheMovieDbMovieDto;
+import com.globallogic.catalogo.dto.TheMovieDbResponseDto;
 
 import java.util.Optional;
 
 public interface TheMovieDbService {
 
-    Optional<TheMovieDbMovieDto> asd();
+    Optional<TheMovieDbResponseDto> searchMovie(String query);
 }
