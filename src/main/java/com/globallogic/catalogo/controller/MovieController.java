@@ -22,4 +22,9 @@ public class MovieController {
     public ResponseEntity<MovieDto> saveMovie(@RequestBody MovieDto movieDto) {
         return ResponseEntity.ok(movieService.save(movieDto));
     }
+
+    @PatchMapping
+    public ResponseEntity<MovieDto> patch(@RequestBody MovieDto movieDto) throws Exception {
+        return ResponseEntity.ok(movieService.update(movieDto));
+    }
 }

@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -31,9 +33,13 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public MovieDto update(MovieDto movieDto) throws Exception {
-        Movie movie = mapper.map(
-                repository.findByUuid(movieDto.getUuid()).orElseThrow(() -> new Exception("no encontrado")),
-                Movie.class);
+        Movie movie = repository.findByUuid(movieDto.getUuid()).orElseThrow(() -> new Exception("no encontrado"));
+        movie.setTitle(movieDto.getTitle());
+        movie.setDescription(movieDto.getDescription());
+        movie.setReleaseDate(movieDto.getReleaseDate());
+        movie.setValoration(movieDto.getValoration());
+        movie.setUrlImagePoster(movieDto.getUrlImagePoster());
+        movie.setUrlVideotrailer(movieDto.getUrlVideotrailer());
         return mapper.map(
                 repository.save(movie),
                 MovieDto.class
