@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Builder
@@ -20,6 +21,7 @@ public class MovieDto {
     @ApiModelProperty(hidden = true)
     private String uuid;
 
+    @NotNull(message = "titulo no puede estar vacío")
     @ApiModelProperty(value = "Nombre de la pelicula", example = "Matrix", required = true)
     private String title;
 
@@ -27,6 +29,7 @@ public class MovieDto {
     @ApiModelProperty(value = "Descripcion de la pelicula", example = "Descripcion Matrix")
     private String description;
 
+    @NotNull(message = "Fecha de lenzamiento no puede estar vacío")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @ApiModelProperty(value = "Fecha de lanzamiento", example = "2021-01-01", required = true)
     private LocalDate releaseDate;

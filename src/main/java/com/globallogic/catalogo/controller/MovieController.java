@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -45,7 +46,7 @@ public class MovieController {
             @ApiResponse(code = 400, message = "La pelicula ya existe", response = MessageDto.class)
     })
     @PostMapping
-    public ResponseEntity<MovieDto> saveMovie(@RequestBody MovieDto movieDto) {
+    public ResponseEntity<MovieDto> saveMovie(@Valid @RequestBody MovieDto movieDto) {
         return ResponseEntity.ok(movieService.save(movieDto));
     }
 
