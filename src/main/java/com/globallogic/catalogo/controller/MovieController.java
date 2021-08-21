@@ -7,12 +7,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RequestMapping("/v1/movie")
 @RestController
 public class MovieController {
 
     final MovieService movieService;
+
+    @GetMapping
+    public ResponseEntity<List<MovieDto>> findAll() {
+        return ResponseEntity.ok(movieService.findAll());
+    }
 
     @GetMapping("/{uuid}")
     public ResponseEntity<MovieDto> findByUuid(@PathVariable("uuid") String uuid) throws RepositoryException {

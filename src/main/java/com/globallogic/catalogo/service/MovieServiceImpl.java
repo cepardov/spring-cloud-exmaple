@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -16,6 +19,13 @@ public class MovieServiceImpl implements MovieService {
     final ModelMapper mapper;
     final MovieRepository repository;
     final ExceptionMsgConfiguration exceptionMsg;
+
+    @Override
+    public List<MovieDto> findAll() {
+        return repository.findAll().stream()
+                .map(movie -> mapper.map(movie, MovieDto.class))
+                .collect(Collectors.toList());
+    }
 
     @Override
     public MovieDto findByUuid(String uuid) throws RepositoryException {
