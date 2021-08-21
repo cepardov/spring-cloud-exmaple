@@ -1,13 +1,13 @@
 package com.globallogic.catalogo.service;
 
+import com.globallogic.catalogo.configuration.ExceptionMsgConfiguration;
 import com.globallogic.catalogo.dto.MovieDto;
 import com.globallogic.catalogo.entity.Movie;
+import com.globallogic.catalogo.exception.RepositoryException;
 import com.globallogic.catalogo.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -15,11 +15,16 @@ public class MovieServiceImpl implements MovieService {
 
     final ModelMapper mapper;
     final MovieRepository repository;
+    final ExceptionMsgConfiguration exceptionMsg;
 
     @Override
-    public MovieDto findByUuid(String uuid) throws Exception {
+    public MovieDto findByUuid(String uuid) throws RepositoryException {
         return mapper.map(
-                repository.findByUuid(uuid).orElseThrow(() -> new Exception("no encontrado")),
+                repository.findByUuid(uuid).orElseThrow(
+                        () -> new RepositoryException(
+                                exceptionMsg.getErrorMovieUuidNotFound().getCode(),
+                                exceptionMsg.getErrorMovieUuidNotFound().getMessage()
+                        )),
                 MovieDto.class
         );
     }
@@ -32,8 +37,11 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public MovieDto update(MovieDto movieDto) throws Exception {
-        Movie movie = repository.findByUuid(movieDto.getUuid()).orElseThrow(() -> new Exception("no encontrado"));
+    public MovieDto update(MovieDto movieDto) throws RepositoryException {
+        Movie movie = repository.findByUuid(movieDto.getUuid()).orElseThrow(
+                () -> new RepositoryException(
+                        exceptionMsg.getErrorUpdateMovie().getCode(),
+                        exceptionMsg.getErrorUpdateMovie().getMessage()));
         movie.setTitle(movieDto.getTitle());
         movie.setDescription(movieDto.getDescription());
         movie.setReleaseDate(movieDto.getReleaseDate());

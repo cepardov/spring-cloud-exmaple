@@ -17,4 +17,6 @@ import org.springframework.stereotype.Component;
 public class ExceptionMsgConfiguration {
 
     private ErrorDto errorMovieExist;
+    private ErrorDto errorUpdateMovie;
+    private ErrorDto errorMovieUuidNotFound;
 }

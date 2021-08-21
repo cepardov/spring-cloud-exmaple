@@ -23,3 +23,10 @@ errors:
   errorMovieExist:
     code: E001
     message: "Error, Uno o mas datos de esta película ya existe en nuestros registros"
+  errorUpdateMovie:
+    code: E002
+    message: "Error, no se puede actualizar este registro, el identificador ya no existe"
+  errorMovieUuidNotFound:
+    code: E003
+    message: "Error, este registro ya no existe"
+

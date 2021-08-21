@@ -1,6 +1,7 @@
 package com.globallogic.catalogo.controller;
 
 import com.globallogic.catalogo.dto.MovieDto;
+import com.globallogic.catalogo.exception.RepositoryException;
 import com.globallogic.catalogo.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ public class MovieController {
     final MovieService movieService;
 
     @GetMapping("/{uuid}")
-    public ResponseEntity<MovieDto> findByUuid(@PathVariable("uuid") String uuid) throws Exception {
+    public ResponseEntity<MovieDto> findByUuid(@PathVariable("uuid") String uuid) throws RepositoryException {
         return ResponseEntity.ok(movieService.findByUuid(uuid));
     }
 
@@ -24,7 +25,7 @@ public class MovieController {
     }
 
     @PatchMapping
-    public ResponseEntity<MovieDto> patch(@RequestBody MovieDto movieDto) throws Exception {
+    public ResponseEntity<MovieDto> patch(@RequestBody MovieDto movieDto) throws RepositoryException {
         return ResponseEntity.ok(movieService.update(movieDto));
     }
 }
