@@ -16,9 +16,9 @@ public class ErrorDto {
 
     @NotNull
     @NotEmpty
-    private String codigo;
+    private String code;
 
     @NotNull
     @NotEmpty
-    private String mensaje;
+    private String message;
 }

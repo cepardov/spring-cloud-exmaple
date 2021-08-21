@@ -6,15 +6,22 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotNull
+    @Column(unique = true)
+    private String uuid;
 
     @NotNull
     @Column(length = 150, unique = true)
@@ -38,6 +45,7 @@ public class Movie {
 
     @PrePersist
     private void prePersist() {
+        this.uuid = UUID.randomUUID().toString();
         this.createdOn = LocalDate.now();
     }
 

@@ -1,6 +1,6 @@
 package com.globallogic.catalogo.configuration;
 
-import com.globallogic.catalogo.dto.TheMovieDbConfDto;
+import com.globallogic.catalogo.exception.ErrorDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
-@ConfigurationProperties("endpoints")
-public class EndpointsConfiguration {
+@ConfigurationProperties("errors")
+public class ExceptionMsgConfiguration {
 
-    private TheMovieDbConfDto apiTheMovieDb;
+    private ErrorDto errorMovieExist;
 }
