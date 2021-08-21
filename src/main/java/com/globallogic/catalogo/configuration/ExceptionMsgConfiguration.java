@@ -19,4 +19,5 @@ public class ExceptionMsgConfiguration {
     private ErrorDto errorMovieExist;
     private ErrorDto errorUpdateMovie;
     private ErrorDto errorMovieUuidNotFound;
+    private ErrorDto errorDeleteMovieUuidNotFound;
 }

@@ -11,4 +11,5 @@ public interface MovieService {
     MovieDto findByUuid(String uuid) throws RepositoryException;
     MovieDto save(MovieDto movieDto);
     MovieDto update(MovieDto movieDto) throws RepositoryException;
+    void deleteByUuid(String uuid) throws RepositoryException;
 }

@@ -7,6 +7,7 @@ import com.globallogic.catalogo.exception.RepositoryException;
 import com.globallogic.catalogo.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +34,8 @@ public class MovieServiceImpl implements MovieService {
                 repository.findByUuid(uuid).orElseThrow(
                         () -> new RepositoryException(
                                 exceptionMsg.getErrorMovieUuidNotFound().getCode(),
-                                exceptionMsg.getErrorMovieUuidNotFound().getMessage()
+                                exceptionMsg.getErrorMovieUuidNotFound().getMessage(),
+                                HttpStatus.NOT_FOUND
                         )),
                 MovieDto.class
         );
@@ -51,7 +53,9 @@ public class MovieServiceImpl implements MovieService {
         Movie movie = repository.findByUuid(movieDto.getUuid()).orElseThrow(
                 () -> new RepositoryException(
                         exceptionMsg.getErrorUpdateMovie().getCode(),
-                        exceptionMsg.getErrorUpdateMovie().getMessage()));
+                        exceptionMsg.getErrorUpdateMovie().getMessage(),
+                        HttpStatus.NOT_FOUND
+                ));
         movie.setTitle(movieDto.getTitle());
         movie.setDescription(movieDto.getDescription());
         movie.setReleaseDate(movieDto.getReleaseDate());
@@ -62,5 +66,16 @@ public class MovieServiceImpl implements MovieService {
                 repository.save(movie),
                 MovieDto.class
         );
+    }
+
+    @Override
+    public void deleteByUuid(String uuid) throws RepositoryException {
+        Movie movie = repository.findByUuid(uuid).orElseThrow(
+                () -> new RepositoryException(
+                        exceptionMsg.getErrorDeleteMovieUuidNotFound().getCode(),
+                        exceptionMsg.getErrorDeleteMovieUuidNotFound().getMessage(),
+                        HttpStatus.NOT_FOUND
+                ));
+        repository.deleteById(movie.getId());
     }
 }

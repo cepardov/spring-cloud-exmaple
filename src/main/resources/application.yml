@@ -29,4 +29,7 @@ errors:
   errorMovieUuidNotFound:
     code: E003
     message: "Error, este registro ya no existe"
+  errorDeleteMovieUuidNotFound:
+    code: E003
+    message: "Error, no se puede eliminar el registro, el identificador ya no existe"
 

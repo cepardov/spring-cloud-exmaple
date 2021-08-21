@@ -28,7 +28,7 @@ public class GlobalControllerAdvice {
                 .code(e.getCode())
                 .message(e.getMessage())
                 .build();
-        return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDto,e.getHttpStatus());
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

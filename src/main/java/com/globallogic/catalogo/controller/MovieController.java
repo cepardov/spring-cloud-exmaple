@@ -35,4 +35,10 @@ public class MovieController {
     public ResponseEntity<MovieDto> patch(@RequestBody MovieDto movieDto) throws RepositoryException {
         return ResponseEntity.ok(movieService.update(movieDto));
     }
+
+    @DeleteMapping("/{uuid}")
+    public ResponseEntity delete(@PathVariable("uuid") String uuid) {
+        movieService.deleteByUuid(uuid);
+        return ResponseEntity.ok("eliminado");
+    }
 }
