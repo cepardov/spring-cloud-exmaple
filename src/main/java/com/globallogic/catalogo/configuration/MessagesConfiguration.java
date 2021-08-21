@@ -13,11 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
-@ConfigurationProperties("errors")
-public class ExceptionMsgConfiguration {
+@ConfigurationProperties("messages")
+public class MessagesConfiguration {
 
-    private MessageDto errorMovieExist;
-    private MessageDto errorUpdateMovie;
-    private MessageDto errorMovieUuidNotFound;
-    private MessageDto errorDeleteMovieUuidNotFound;
+    private MessageDto movieDeleted;
 }

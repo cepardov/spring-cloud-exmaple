@@ -1,6 +1,8 @@
 package com.globallogic.catalogo.service;
 
 import com.globallogic.catalogo.configuration.ExceptionMsgConfiguration;
+import com.globallogic.catalogo.configuration.MessagesConfiguration;
+import com.globallogic.catalogo.dto.MessageDto;
 import com.globallogic.catalogo.dto.MovieDto;
 import com.globallogic.catalogo.entity.Movie;
 import com.globallogic.catalogo.exception.RepositoryException;
@@ -20,6 +22,7 @@ public class MovieServiceImpl implements MovieService {
     final ModelMapper mapper;
     final MovieRepository repository;
     final ExceptionMsgConfiguration exceptionMsg;
+    final MessagesConfiguration messages;
 
     @Override
     public List<MovieDto> findAll() {
@@ -69,7 +72,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public void deleteByUuid(String uuid) throws RepositoryException {
+    public MessageDto deleteByUuid(String uuid) throws RepositoryException {
         Movie movie = repository.findByUuid(uuid).orElseThrow(
                 () -> new RepositoryException(
                         exceptionMsg.getErrorDeleteMovieUuidNotFound().getCode(),
@@ -77,5 +80,8 @@ public class MovieServiceImpl implements MovieService {
                         HttpStatus.NOT_FOUND
                 ));
         repository.deleteById(movie.getId());
+        return MessageDto.builder()
+                .message(messages.getMovieDeleted().getMessage())
+                .build();
     }
 }

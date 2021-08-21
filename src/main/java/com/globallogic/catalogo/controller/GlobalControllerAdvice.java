@@ -1,7 +1,7 @@
 package com.globallogic.catalogo.controller;
 
 import com.globallogic.catalogo.configuration.ExceptionMsgConfiguration;
-import com.globallogic.catalogo.dto.ErrorDto;
+import com.globallogic.catalogo.dto.MessageDto;
 import com.globallogic.catalogo.exception.RepositoryException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,22 +19,22 @@ public class GlobalControllerAdvice {
     final ExceptionMsgConfiguration exceptionMsg;
 
     @ExceptionHandler(RepositoryException.class)
-    public ResponseEntity<ErrorDto> repositoryException(RepositoryException e) {
+    public ResponseEntity<MessageDto> repositoryException(RepositoryException e) {
         log.error(e.getMessage(), e);
-        ErrorDto errorDto = ErrorDto.builder()
+        MessageDto messageDto = MessageDto.builder()
                 .code(e.getCode())
                 .message(e.getMessage())
                 .build();
-        return new ResponseEntity<>(errorDto,e.getHttpStatus());
+        return new ResponseEntity<>(messageDto,e.getHttpStatus());
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Object> entityViolations(DataIntegrityViolationException e) {
         log.error(e.getMessage(), e);
-        ErrorDto errorDto = ErrorDto.builder()
+        MessageDto messageDto = MessageDto.builder()
                 .code(exceptionMsg.getErrorMovieExist().getCode())
                 .message(exceptionMsg.getErrorMovieExist().getMessage())
                 .build();
-        return new ResponseEntity<>(errorDto, HttpStatus.CONFLICT);
+        return new ResponseEntity<>(messageDto, HttpStatus.CONFLICT);
     }
 }

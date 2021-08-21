@@ -19,6 +19,9 @@ spring:
       settings:
         web-allow-others: true
 
+messages:
+  movieDeleted:
+    message: "Película eliminada con éxito"
 errors:
   errorMovieExist:
     code: E001
