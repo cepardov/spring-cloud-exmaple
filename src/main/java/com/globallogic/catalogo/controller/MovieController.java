@@ -1,7 +1,7 @@
 package com.globallogic.catalogo.controller;
 
 import com.globallogic.catalogo.dto.MovieDto;
-import com.globallogic.catalogo.exception.ErrorDto;
+import com.globallogic.catalogo.dto.ErrorDto;
 import com.globallogic.catalogo.exception.RepositoryException;
 import com.globallogic.catalogo.service.MovieService;
 import io.swagger.annotations.ApiOperation;

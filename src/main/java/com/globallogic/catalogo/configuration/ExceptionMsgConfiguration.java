@@ -1,6 +1,6 @@
 package com.globallogic.catalogo.configuration;
 
-import com.globallogic.catalogo.exception.ErrorDto;
+import com.globallogic.catalogo.dto.ErrorDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

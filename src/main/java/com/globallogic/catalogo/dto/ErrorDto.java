@@ -1,4 +1,4 @@
-package com.globallogic.catalogo.exception;
+package com.globallogic.catalogo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
