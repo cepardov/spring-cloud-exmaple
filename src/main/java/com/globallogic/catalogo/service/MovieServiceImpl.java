@@ -15,8 +15,11 @@ public class MovieServiceImpl implements MovieService {
     final MovieRepository repository;
 
     @Override
-    public MovieDto findByUuid(String uuid) {
-        return null;
+    public MovieDto findByUuid(String uuid) throws Exception {
+        return mapper.map(
+                repository.findByUuid(uuid).orElseThrow(() -> new Exception("no encontrado")),
+                MovieDto.class
+        );
     }
 
     @Override
@@ -24,5 +27,16 @@ public class MovieServiceImpl implements MovieService {
         return mapper.map(
                 repository.save(mapper.map(movieDto, Movie.class)),
                 MovieDto.class);
+    }
+
+    @Override
+    public MovieDto update(MovieDto movieDto) throws Exception {
+        Movie movie = mapper.map(
+                repository.findByUuid(movieDto.getUuid()).orElseThrow(() -> new Exception("no encontrado")),
+                Movie.class);
+        return mapper.map(
+                repository.save(movie),
+                MovieDto.class
+        );
     }
 }
