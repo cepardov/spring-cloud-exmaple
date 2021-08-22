@@ -1,5 +1,10 @@
 # cpa-java-ssr-a-sr-2021
 
+### Swagger UI
+```
+http://localhost:8080/swagger-ui.html
+```
+
 ### POST: Guardar un registro
 ```
 http://localhost:8080/v1/movie
