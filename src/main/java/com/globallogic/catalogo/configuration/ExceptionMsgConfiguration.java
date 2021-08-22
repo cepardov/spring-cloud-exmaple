@@ -20,4 +20,5 @@ public class ExceptionMsgConfiguration {
     private MessageDto errorUpdateMovie;
     private MessageDto errorMovieUuidNotFound;
     private MessageDto errorDeleteMovieUuidNotFound;
+    private MessageDto errorTmdbMovieNotFound;
 }

@@ -37,6 +37,9 @@ errors:
     code: E003
     message: "Error, este registro ya no existe"
   errorDeleteMovieUuidNotFound:
-    code: E003
+    code: E004
     message: "Error, no se puede eliminar el registro, el identificador ya no existe"
+  errorTmdbMovieNotFound:
+    code: E005
+    message: "Error, la palícula que intenta buscar en TMDB no está disponilbe"
 

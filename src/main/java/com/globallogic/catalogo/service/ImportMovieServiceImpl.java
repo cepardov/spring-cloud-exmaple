@@ -1,6 +1,7 @@
 package com.globallogic.catalogo.service;
 
 import com.globallogic.catalogo.configuration.CatalogConfiguration;
+import com.globallogic.catalogo.configuration.ExceptionMsgConfiguration;
 import com.globallogic.catalogo.dto.MovieDto;
 import com.globallogic.catalogo.dto.TheMovieDbResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class ImportMovieServiceImpl implements ImportMovieService{
     final ModelMapper mapper;
     final TheMovieDbService theMovieDbService;
     final CatalogConfiguration configuration;
+    final ExceptionMsgConfiguration exceptionMsg;
 
     @Override
     public List<MovieDto> findMovieByName(MovieDto movieDto) throws Exception {
@@ -37,7 +39,7 @@ public class ImportMovieServiceImpl implements ImportMovieService{
                     .map(theMovieDbMovieDto -> mapper.map(theMovieDbMovieDto, MovieDto.class))
                     .collect(Collectors.toList());
         } else {
-            throw new Exception("asd");
+            throw new Exception(exceptionMsg.getErrorTmdbMovieNotFound().getMessage());
         }
     }
 }
