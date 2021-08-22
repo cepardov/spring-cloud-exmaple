@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface TheMovieDbService {
 
-    Optional<TheMovieDbResponseDto> searchMovie(String query);
+    Optional<TheMovieDbResponseDto> searchMovie(String query, int page);
 }

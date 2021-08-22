@@ -1,7 +1,7 @@
 endpoints:
   apiTheMovieDb:
-    token: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiODE5NDM4NzJhZDhkNWRlMzgwODlmMjYwMWQ4MWI3ZCIsInN1YiI6IjYxMGNiOTU3ZTc4Njg3MDA1ZTkyZjYzZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gdu9M6yingzaVUKEwKnBST8YDxswRDAmJDB1NZ36xSc'
-    searchMovie: 'https://api.themoviedb.org/3/search/movie'
+    token: "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiODE5NDM4NzJhZDhkNWRlMzgwODlmMjYwMWQ4MWI3ZCIsInN1YiI6IjYxMGNiOTU3ZTc4Njg3MDA1ZTkyZjYzZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gdu9M6yingzaVUKEwKnBST8YDxswRDAmJDB1NZ36xSc"
+    searchMovie: "https://api.themoviedb.org/3/search/movie"
 
 spring:
   datasource:
@@ -18,6 +18,10 @@ spring:
       path: /h2
       settings:
         web-allow-others: true
+
+catalog:
+  theMovieDb:
+    urlImages: "https://image.tmdb.org/t/p/original"
 
 messages:
   movieDeleted:

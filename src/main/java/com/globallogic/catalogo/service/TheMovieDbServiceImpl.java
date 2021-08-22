@@ -3,21 +3,23 @@ package com.globallogic.catalogo.service;
 import com.globallogic.catalogo.configuration.EndpointsConfiguration;
 import com.globallogic.catalogo.constantes.Constantes;
 import com.globallogic.catalogo.dto.TheMovieDbResponseDto;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@Component
-@RequiredArgsConstructor
+@Slf4j
+@AllArgsConstructor
+@Service
 public class TheMovieDbServiceImpl implements TheMovieDbService {
 
-    RestTemplate restTemplate;
-    EndpointsConfiguration endpoints;
+    final RestTemplate restTemplate;
+    final EndpointsConfiguration endpoints;
 
     private HttpHeaders getHeadersSeguridad() {
         HttpHeaders headers = new HttpHeaders();
@@ -28,18 +30,17 @@ public class TheMovieDbServiceImpl implements TheMovieDbService {
     }
 
     @Override
-    public Optional<TheMovieDbResponseDto> searchMovie(String query) {
+    public Optional<TheMovieDbResponseDto> searchMovie(String query, int page) {
         HttpEntity<?> request = new HttpEntity<>(getHeadersSeguridad());
-        Map<String, String> params = new HashMap<>();
-        params.put("query",query);
-        params.put("language","es");
-        params.put("page","1");
+        String url = endpoints.getApiTheMovieDb().getSearchMovie()
+                + "?language=es"
+                + "&query="+query
+                + "&page="+page;
         ResponseEntity<TheMovieDbResponseDto> res = restTemplate.exchange(
-                endpoints.getApiTheMovieDb().getSearchMovie(),
+                url,
                 HttpMethod.GET,
                 request,
-                TheMovieDbResponseDto.class,
-                params
+                TheMovieDbResponseDto.class
         );
         return Optional.ofNullable(res.getBody());
     }

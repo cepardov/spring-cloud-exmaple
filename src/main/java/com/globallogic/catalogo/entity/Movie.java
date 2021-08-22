@@ -28,6 +28,7 @@ public class Movie {
     @Length(min = 2, max = 150, message = "el tamaño debe ser entre 2 y 150")
     private String title;
 
+    @Column(length = 1024)
     private String description;
 
     @NotNull

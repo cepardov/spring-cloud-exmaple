@@ -1,5 +1,9 @@
 # cpa-java-ssr-a-sr-2021
 
+### POST: Guardar un registro
+```
+http://localhost:8080/v1/movie
+```
 ```
 {
   "description": "descripcion",
