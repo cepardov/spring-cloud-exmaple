@@ -1,7 +1,8 @@
-package com.globallogic.catalogo.service;
+package com.globallogic.catalogo.client.impl;
 
+import com.globallogic.catalogo.client.TheMovieDbClient;
 import com.globallogic.catalogo.configuration.EndpointsConfiguration;
-import com.globallogic.catalogo.constantes.Constantes;
+import com.globallogic.catalogo.constants.Constants;
 import com.globallogic.catalogo.dto.TheMovieDbResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import java.util.Optional;
 @Slf4j
 @AllArgsConstructor
 @Service
-public class TheMovieDbServiceImpl implements TheMovieDbService {
+public class TheMovieDbClientImpl implements TheMovieDbClient {
 
     final RestTemplate restTemplate;
     final EndpointsConfiguration endpoints;
@@ -22,8 +23,8 @@ public class TheMovieDbServiceImpl implements TheMovieDbService {
     private HttpHeaders getHeadersSeguridad() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add(Constantes.AUTHORIZATION,
-                Constantes.BEARER + endpoints.getApiTheMovieDb().getToken());
+        headers.add(Constants.AUTHORIZATION,
+                Constants.BEARER + endpoints.getApiTheMovieDb().getToken());
         return headers;
     }
 

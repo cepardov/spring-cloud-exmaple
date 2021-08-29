@@ -1,10 +1,10 @@
-package com.globallogic.catalogo.service;
+package com.globallogic.catalogo.client;
 
 import com.globallogic.catalogo.dto.TheMovieDbResponseDto;
 
 import java.util.Optional;
 
-public interface TheMovieDbService {
+public interface TheMovieDbClient {
 
     Optional<TheMovieDbResponseDto> searchMovie(String query, int page);
 }

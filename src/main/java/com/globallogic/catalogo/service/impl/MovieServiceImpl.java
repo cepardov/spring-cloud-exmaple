@@ -1,4 +1,4 @@
-package com.globallogic.catalogo.service;
+package com.globallogic.catalogo.service.impl;
 
 import com.globallogic.catalogo.configuration.ExceptionMsgConfiguration;
 import com.globallogic.catalogo.configuration.MessagesConfiguration;
@@ -7,6 +7,7 @@ import com.globallogic.catalogo.dto.MovieDto;
 import com.globallogic.catalogo.entity.Movie;
 import com.globallogic.catalogo.exception.RepositoryException;
 import com.globallogic.catalogo.repository.MovieRepository;
+import com.globallogic.catalogo.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;

@@ -7,10 +7,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +22,7 @@ public class ImportMovieController {
     @ApiResponses({
             @ApiResponse(code = 200, message = "Lista de películas",response = MovieDto.class)
     })
-    @PostMapping("/movieByName")
+    @GetMapping("/movieByName")
     public ResponseEntity<List<MovieDto>> findByName(@RequestBody MovieDto movieDto) throws Exception {
         return ResponseEntity.ok(importMovieService.findMovieByName(movieDto));
     }

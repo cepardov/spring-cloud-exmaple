@@ -1,8 +1,8 @@
-package com.globallogic.catalogo.constantes;
+package com.globallogic.catalogo.constants;
 
-public class Constantes {
+public class Constants {
 
-    private Constantes() {
+    private Constants() {
     }
 
     public static final String AUTHORIZATION = "Authorization";
