@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 public class MovieController {
 
-    final MovieService movieService;
+    private final MovieService movieService;
 
     @ApiOperation("Operacion que permite obtener todas las películas")
     @ApiResponses({

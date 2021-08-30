@@ -6,28 +6,23 @@ import com.globallogic.catalogo.configuration.ExceptionMsgConfiguration;
 import com.globallogic.catalogo.dto.MovieDto;
 import com.globallogic.catalogo.dto.TheMovieDbResponseDto;
 import com.globallogic.catalogo.service.ImportMovieService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class ImportMovieServiceImpl implements ImportMovieService {
 
-    @Autowired
-    private ModelMapper mapper;
 
-    @Autowired
-    private TheMovieDbClient theMovieDbClient;
-
-    @Autowired
-    private CatalogConfiguration configuration;
-
-    @Autowired
-    private ExceptionMsgConfiguration exceptionMsg;
+    private final ModelMapper mapper;
+    private final TheMovieDbClient theMovieDbClient;
+    private final CatalogConfiguration configuration;
+    private final ExceptionMsgConfiguration exceptionMsg;
 
     @Override
     public List<MovieDto> findMovieByName(MovieDto movieDto) throws Exception {

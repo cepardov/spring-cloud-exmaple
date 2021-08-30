@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 public class ImportMovieController {
 
-    final ImportMovieService importMovieService;
+    private final ImportMovieService importMovieService;
 
     @ApiOperation("Operacion que permite obtener un listado de peliculas desde TMDB")
     @ApiResponses({

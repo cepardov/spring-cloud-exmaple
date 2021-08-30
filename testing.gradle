@@ -3,7 +3,8 @@ def jacocoExcludes = [
         'com/globallogic/catalogo/dto/**',
         'com/globallogic/catalogo/configuration/**',
         'com/globallogic/catalogo/exception/**',
-        'com/globallogic/catalogo/entity/**'
+        'com/globallogic/catalogo/entity/**',
+        'com/globallogic/catalogo/controller/GlobalControllerAdvice.*'
 ]
 test {
     useJUnitPlatform()

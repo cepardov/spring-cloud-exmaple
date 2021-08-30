@@ -5,6 +5,7 @@ import com.globallogic.catalogo.configuration.EndpointsConfiguration;
 import com.globallogic.catalogo.constants.Constants;
 import com.globallogic.catalogo.dto.TheMovieDbResponseDto;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -13,12 +14,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Optional;
 
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class TheMovieDbClientImpl implements TheMovieDbClient {
 
-    final RestTemplate restTemplate;
-    final EndpointsConfiguration endpoints;
+    private final RestTemplate restTemplate;
+    private final EndpointsConfiguration endpoints;
 
     private HttpHeaders getHeadersSeguridad() {
         HttpHeaders headers = new HttpHeaders();
