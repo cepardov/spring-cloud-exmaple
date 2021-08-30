@@ -8,28 +8,36 @@ import com.globallogic.catalogo.entity.Movie;
 import com.globallogic.catalogo.exception.RepositoryException;
 import com.globallogic.catalogo.repository.MovieRepository;
 import com.globallogic.catalogo.service.MovieService;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @Service
 public class MovieServiceImpl implements MovieService {
 
-    final ModelMapper mapper;
-    final MovieRepository repository;
-    final ExceptionMsgConfiguration exceptionMsg;
-    final MessagesConfiguration messages;
+    @Autowired
+    private ModelMapper mapper;
+
+    @Autowired
+    private MovieRepository repository;
+
+    @Autowired
+    private ExceptionMsgConfiguration exceptionMsg;
+
+    @Autowired
+    private MessagesConfiguration messages;
 
     @Override
     public List<MovieDto> findAll() {
-        return repository.findAll().stream()
+        List<Movie> movieList = repository.findAll();
+        List<MovieDto> movieDtoList = movieList.stream()
                 .map(movie -> mapper.map(movie, MovieDto.class))
                 .collect(Collectors.toList());
+        return movieDtoList;
     }
 
     @Override

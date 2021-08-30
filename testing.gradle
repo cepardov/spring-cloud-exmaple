@@ -1,7 +1,12 @@
 def jacocoExcludes = [
-        'com/globallogic/catalogo/Application.*'
+        'com/globallogic/catalogo/Application.*',
+        'com/globallogic/catalogo/dto/**',
+        'com/globallogic/catalogo/configuration/**',
+        'com/globallogic/catalogo/exception/**',
+        'com/globallogic/catalogo/entity/**'
 ]
 test {
+    useJUnitPlatform()
     finalizedBy jacocoTestReport // report is always generated after tests run
 }
 jacocoTestReport {

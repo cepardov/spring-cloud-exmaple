@@ -36,10 +36,13 @@ dependencies {
     }
 
     implementation 'org.modelmapper:modelmapper:2.4.4'
-    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
-    testCompile 'org.codehaus.groovy:groovy-all:2.4.4'
-    testRuntime 'cglib:cglib-nodep:3.3.0'       // For mocking classes
+    testCompile 'org.spockframework:spock-core:1.2-groovy-2.5'
+    //testCompile 'org.codehaus.groovy:groovy-all:2.4.4'
+    compile 'cglib:cglib-nodep:3.3.0'       // For mocking classes
     testCompile 'org.objenesis:objenesis:3.2'   // For mocking final classes
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.7.2'
 
     implementation 'org.hibernate:hibernate-validator:7.0.1.Final'
 
