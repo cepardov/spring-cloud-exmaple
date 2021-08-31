@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 @Service
 public class ImportMovieServiceImpl implements ImportMovieService {
 
-
     private final ModelMapper mapper;
     private final TheMovieDbClient theMovieDbClient;
     private final CatalogConfiguration configuration;

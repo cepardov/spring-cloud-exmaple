@@ -4,7 +4,6 @@ import com.globallogic.catalogo.client.TheMovieDbClient;
 import com.globallogic.catalogo.configuration.EndpointsConfiguration;
 import com.globallogic.catalogo.constants.Constants;
 import com.globallogic.catalogo.dto.TheMovieDbResponseDto;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
