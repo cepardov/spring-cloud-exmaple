@@ -42,7 +42,7 @@ class MovieServiceTest {
     private MessagesConfiguration messages;
 
     @Test
-    void findAll() {
+    void whenRequestForAllMovies_thenReturnList() {
         //given
         when(mapper.map(any(), any())).thenReturn(FakeData.movieDto());
         when(repository.findAll()).thenReturn(FakeData.movieList());
@@ -55,7 +55,7 @@ class MovieServiceTest {
     }
 
     @Test
-    void findByUuid() {
+    void whenRequestForExistingMovie_thenReturnMovieDetails() {
         when(mapper.map(any(), any())).thenReturn(FakeData.movieDto());
         when(repository.findByUuid(any())).thenReturn(Optional.of(FakeData.movie()));
         MovieDto movieDto = service.findByUuid("uuid");
@@ -63,7 +63,7 @@ class MovieServiceTest {
     }
 
     @Test
-    void findByUuid_ex() {
+    void whenRequestForExistingMovie_thenReturnErrorMessage() {
         when(exceptionMsg.getErrorMovieUuidNotFound()).thenReturn(FakeData.exceptionMsgConfiguration().getErrorMovieUuidNotFound());
         when(repository.findByUuid(any())).thenReturn(Optional.empty());
         RepositoryException e = assertThrows(RepositoryException.class, () -> service.findByUuid("uuid"));
@@ -71,7 +71,7 @@ class MovieServiceTest {
     }
 
     @Test
-    void save() {
+    void whenRequestForSaveMovie_thenReturnMovieSaved() {
         when(mapper.map(any(), any())).thenReturn(FakeData.movie()).thenReturn(FakeData.movieDto());
         when(repository.save(any())).thenReturn(FakeData.movie());
         MovieDto movieDto = service.save(FakeData.movieDto());
@@ -79,7 +79,7 @@ class MovieServiceTest {
     }
 
     @Test
-    void update() {
+    void whenRequestForPatchMovie_thenReturnMovieUpdated() {
         when(mapper.map(any(), any())).thenReturn(FakeData.movieDto());
         when(repository.findByUuid(any())).thenReturn(Optional.of(FakeData.movie()));
 
@@ -89,7 +89,7 @@ class MovieServiceTest {
     }
 
     @Test
-    void update_ex() {
+    void whenRequestForPatchMovie_thenReturnErrorMessage() {
         when(exceptionMsg.getErrorUpdateMovie()).thenReturn(FakeData.exceptionMsgConfiguration().getErrorUpdateMovie());
         when(repository.findByUuid(any())).thenReturn(Optional.empty());
 
@@ -98,7 +98,7 @@ class MovieServiceTest {
     }
 
     @Test
-    void deleteByUuid() {
+    void whenRequestForDeleteMovie_thenReturnDeleteMessage() {
         when(repository.findByUuid(any())).thenReturn(Optional.of(FakeData.movie()));
 
         when(messages.getMovieDeleted()).thenReturn(FakeData.messageDto());
@@ -107,7 +107,7 @@ class MovieServiceTest {
     }
 
     @Test
-    void deleteByUuid_ex() {
+    void whenRequestForDeleteMovie_thenReturnErrorMessage() {
         when(exceptionMsg.getErrorDeleteMovieUuidNotFound()).thenReturn(FakeData.exceptionMsgConfiguration().getErrorDeleteMovieUuidNotFound());
         when(repository.findByUuid(any())).thenReturn(Optional.empty());
 
