@@ -28,20 +28,24 @@ public class ImportMovieServiceImpl implements ImportMovieService {
         Optional<TheMovieDbResponseDto> response = theMovieDbClient.searchMovie(movieDto.getTitle(), 1);
 
         if (response.isPresent()) {
-            return response.get().getMovies().stream()
-                    .map(theMovieDbMovieDto -> {
-                        String urlImg = theMovieDbMovieDto.getUrlImagePoster();
-                        if (null != urlImg && !urlImg.isEmpty()) {
-                            theMovieDbMovieDto.setUrlImagePoster(
-                                    configuration.getTheMovieDb().getUrlImages().concat(urlImg)
-                            );
-                        }
-                        return theMovieDbMovieDto;
-                    })
-                    .map(theMovieDbMovieDto -> mapper.map(theMovieDbMovieDto, MovieDto.class))
-                    .collect(Collectors.toList());
+            return mapMovies(response.get());
         } else {
             throw new Exception(exceptionMsg.getErrorTmdbMovieNotFound().getMessage());
         }
+    }
+
+    private List<MovieDto> mapMovies(TheMovieDbResponseDto theMovieDbResponseDto) {
+        return theMovieDbResponseDto.getMovies().stream()
+                .map(theMovieDbMovieDto -> {
+                    String urlImg = theMovieDbMovieDto.getUrlImagePoster();
+                    if (null != urlImg && !urlImg.isEmpty()) {
+                        theMovieDbMovieDto.setUrlImagePoster(
+                                configuration.getTheMovieDb().getUrlImages().concat(urlImg)
+                        );
+                    }
+                    return theMovieDbMovieDto;
+                })
+                .map(theMovieDbMovieDto -> mapper.map(theMovieDbMovieDto, MovieDto.class))
+                .collect(Collectors.toList());
     }
 }
