@@ -2,17 +2,17 @@ version: "3.9"
 
 services:
   database:
-    image: mariadb:latest
+    image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
     ports:
       - "3306:3306"
     volumes:
       - ./data/var/lib/mysql:/var/lib/mysql
     environment:
-      MARIADB_USER: app
-      MARIADB_PASSWORD: app2021
-      MARIADB_DATABASE: catalogo
-      MARIADB_ROOT_PASSWORD: toor
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app2021
+      MYSQL_DATABASE: catalogo
+      MYSQL_ROOT_PASSWORD: toor
     restart: always
   catalogo:
     build: .

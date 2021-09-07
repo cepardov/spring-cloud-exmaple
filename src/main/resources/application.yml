@@ -10,7 +10,7 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASSWD}
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     generate-ddl: true
 
 catalog:
