@@ -1,0 +1,14 @@
+spring:
+  security:
+    user:
+      name: user
+      password: password
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/cepardov/config-server-files
+          refreshRate: 30
+          default-label: master
+server:
+  port: 8888
