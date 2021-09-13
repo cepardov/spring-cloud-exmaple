@@ -1,0 +1,38 @@
+endpoints:
+  apiTheMovieDb:
+    token: "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiODE5NDM4NzJhZDhkNWRlMzgwODlmMjYwMWQ4MWI3ZCIsInN1YiI6IjYxMGNiOTU3ZTc4Njg3MDA1ZTkyZjYzZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gdu9M6yingzaVUKEwKnBST8YDxswRDAmJDB1NZ36xSc"
+    searchMovie: "https://api.themoviedb.org/3/search/movie"
+
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_SERVER:localhost}:3306/${DB_NAME:db}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USER:user}
+    password: ${DB_PASSWD:pass}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: true
+
+catalog:
+  theMovieDb:
+    urlImages: "https://image.tmdb.org/t/p/original"
+
+messages:
+  movieDeleted:
+    message: "Película eliminada con éxito"
+errors:
+  errorMovieExist:
+    code: E001
+    message: "Error, Uno o mas datos de esta película ya existe en nuestros registros"
+  errorUpdateMovie:
+    code: E002
+    message: "Error, no se puede actualizar este registro, el identificador ya no existe"
+  errorMovieUuidNotFound:
+    code: E003
+    message: "Error, este registro ya no existe"
+  errorDeleteMovieUuidNotFound:
+    code: E004
+    message: "Error, no se puede eliminar el registro, el identificador ya no existe"
+  errorTmdbMovieNotFound:
+    code: E005
+    message: "Error, la palícula que intenta buscar en TMDB no está disponilbe"
