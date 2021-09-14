@@ -3,6 +3,11 @@ endpoints:
     token: "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiODE5NDM4NzJhZDhkNWRlMzgwODlmMjYwMWQ4MWI3ZCIsInN1YiI6IjYxMGNiOTU3ZTc4Njg3MDA1ZTkyZjYzZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gdu9M6yingzaVUKEwKnBST8YDxswRDAmJDB1NZ36xSc"
     searchMovie: "https://api.themoviedb.org/3/search/movie"
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${DISCOVERY_HOST:localhost}:${DISCOVERY_PORT:8090}/eureka
+
 spring:
   datasource:
     url: jdbc:mysql://${DB_SERVER:localhost}:3306/${DB_NAME:db}
