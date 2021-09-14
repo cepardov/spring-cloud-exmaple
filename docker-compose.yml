@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  database:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/var/lib/mysql:/var/lib/mysql
+    environment:
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app2021
+      MYSQL_DATABASE: catalogo
+      MYSQL_ROOT_PASSWORD: toor
+  configserver:
+    build: ./configserver
+    ports:
+      - "8888:8888"
+    environment:
+      CONFIG_GIT_URI: https://github.com/cepardov/config-server-files
+      CONFIG_GIT_LABEL: master
+  catalogo:
+    build: ./catalogo
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "database"
+      - "configserver"
+    environment:
+      DB_SERVER: database
+      DB_NAME: catalogo
+      DB_USER: app
+      DB_PASSWD: app2021
+      CONFIG_HOST: configserver
+      CONFIG_PORT: 8888
+      WAIT_HOSTS: configserver:8888, database:3306

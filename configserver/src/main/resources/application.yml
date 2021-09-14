@@ -3,8 +3,8 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/cepardov/config-server-files
+          uri: ${CONFIG_GIT_URI:https://github.com/cepardov/config-server-files}
           refreshRate: 30
-          default-label: master
+          default-label: ${CONFIG_GIT_LABEL:master}
 server:
   port: 8888
