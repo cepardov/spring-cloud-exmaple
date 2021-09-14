@@ -4,6 +4,7 @@ import com.globallogic.catalogo.client.TheMovieDbClient;
 import com.globallogic.catalogo.configuration.EndpointsConfiguration;
 import com.globallogic.catalogo.constants.Constants;
 import com.globallogic.catalogo.dto.TheMovieDbResponseDto;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
@@ -29,6 +30,7 @@ public class TheMovieDbClientImpl implements TheMovieDbClient {
     }
 
     @Override
+    @HystrixCommand(fallbackMethod = "searchMovieDefault")
     public Optional<TheMovieDbResponseDto> searchMovie(String query, int page) {
         HttpEntity<?> request = new HttpEntity<>(getHeadersSeguridad());
         String url = endpoints.getApiTheMovieDb().getSearchMovie()
@@ -42,5 +44,8 @@ public class TheMovieDbClientImpl implements TheMovieDbClient {
                 TheMovieDbResponseDto.class
         );
         return Optional.ofNullable(res.getBody());
+    }
+    public Optional<TheMovieDbResponseDto> searchMovieDefault(String query, int page) {
+        return Optional.empty();
     }
 }
