@@ -21,6 +21,19 @@ services:
     environment:
       CONFIG_GIT_URI: https://github.com/cepardov/config-server-files
       CONFIG_GIT_LABEL: master
+  servicediscovery:
+    build: ./servicediscovery
+    image: servicediscovery:latest
+    ports:
+      - "8090:8090"
+    depends_on:
+      - "configserver"
+    environment:
+      DISCOVERY_HOST: servicediscovery
+      DISCOVERY_PORT: 8090
+      CONFIG_HOST: configserver
+      CONFIG_PORT: 8888
+      WAIT_HOSTS: configserver:8888
   catalogo:
     build: ./catalogo
     image: catalogo:latest
@@ -34,6 +47,8 @@ services:
       DB_NAME: catalogo
       DB_USER: app
       DB_PASSWD: app2021
+      DISCOVERY_HOST: servicediscovery
+      DISCOVERY_PORT: 8090
       CONFIG_HOST: configserver
       CONFIG_PORT: 8888
-      WAIT_HOSTS: configserver:8888, database:3306
+      WAIT_HOSTS: configserver:8888, database:3306, servicediscovery:8090

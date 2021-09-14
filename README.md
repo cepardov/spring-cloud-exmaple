@@ -15,3 +15,6 @@ chmod +x run.sh && chmod +x stop.sh
 ```
 ./stop.sh
 ```
+
+### Config files
+https://github.com/cepardov/config-server-files.git
