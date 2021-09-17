@@ -19,4 +19,4 @@ chmod +x run.sh && chmod +x stop.sh
 ### Config files
 https://github.com/cepardov/config-server-files.git
 
-Sign commit with GPG
+Sign commit with GPG 0
